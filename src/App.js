@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Expenses from "./components/expense/Expenses";
+import NewExpense from "./components/newExpense/NewExpense";
 import "./App.css";
 const fakeData = [
   {
@@ -47,17 +48,17 @@ const fakeData = [
 function App() {
   const [fake_data, setFake_data] = useState(fakeData);
 
-  const sliceArrayHandler = () => {
-    let arr2 = fake_data.slice(0, 1);
-
-    setFake_data(arr2);
+  const addDataToMainDataHandler = (data) => {
+    setFake_data((prev) => {
+      return [data, ...prev];
+    });
   };
 
   return (
     <>
+      <NewExpense onAddDataToMainDataHandler={addDataToMainDataHandler} />
       <div className="expenses">
         <Expenses expenses={fake_data} />
-        <button onClick={sliceArrayHandler}>Change array</button>
       </div>
     </>
   );

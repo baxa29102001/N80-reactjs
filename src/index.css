@@ -42,3 +42,46 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
 }
+
+p {
+  color: white;
+}
+
+.expense-form {
+  width: 100%;
+  background-color: #ad00c8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.expense-form-container {
+  width: 800px;
+  margin: 50px auto;
+}
+
+.expense-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.expense-input label {
+  font-size: 18px;
+  font-weight: 700;
+}
+.expense-input input {
+  /* font-size: 18px;
+  font-weight: 700; */
+
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 10px 15px;
+}
+
+.expense-filter {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 20px;
+}

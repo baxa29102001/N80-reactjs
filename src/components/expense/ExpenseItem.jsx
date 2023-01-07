@@ -10,25 +10,19 @@ function ExpenseItem({ title = "Toilet Paper", price = "99.5", date }) {
     });
   };
 
-
-
-  console.log("Expense Item Component");
-
   return (
     <>
       <div className="expense-item">
         <div className="expenseDate">
-          <p className="expenseDateMonth">August</p>
-          <p className="expenseDateYear">2021</p>
-          <p className="expenseDateDay">15</p>
+          <p className="expenseDateMonth">{date.month}</p>
+          <p className="expenseDateYear">{date.year}</p>
+          <p className="expenseDateDay">{date.day}</p>
         </div>
 
         <div className="expense-content">
           <h2 className="expense-item-title">{customTitle.title}</h2>
           <p className="expense-item-price">${customTitle.price}</p>
         </div>
-
-        <button onClick={clickHandler}>Change title</button>
       </div>
     </>
   );
