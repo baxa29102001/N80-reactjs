@@ -3,6 +3,7 @@ import { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import ExpenseFilter from "./ExpenseFilter";
 
+
 function Expenses({ expenses }) {
   const [year, setYear] = useState("all");
 
@@ -13,13 +14,14 @@ function Expenses({ expenses }) {
   const filteredExpenses = expenses.filter((item) => {
     if (year === "all") return true;
 
-    return +item.date.year === +year; 
+    return +item.date.year === +year;
   });
 
   return (
     <>
       <ExpenseFilter onChangeFilterHandler={filterByYear} />
 
+      {filteredExpenses.length === 0 && <p>No content</p>}
       {filteredExpenses.map((item) => (
         <ExpenseItem
           key={item.id}

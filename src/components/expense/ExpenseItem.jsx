@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import classes from "./Expense.module.scss";
+
 function ExpenseItem({ title = "Toilet Paper", price = "99.5", date }) {
   const [customTitle, setCustomTitle] = useState({ title, price });
 
@@ -12,11 +14,11 @@ function ExpenseItem({ title = "Toilet Paper", price = "99.5", date }) {
 
   return (
     <>
-      <div className="expense-item">
+      <div className={classes.expenseItem}>
         <div className="expenseDate">
           <p className="expenseDateMonth">{date.month}</p>
           <p className="expenseDateYear">{date.year}</p>
-          <p className="expenseDateDay">{date.day}</p>
+          <p className="expenseDateDay red">{date.day}</p>
         </div>
 
         <div className="expense-content">

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classes from "./NewExpense.module.scss";
 const month = [
   "January",
   "February",
@@ -24,6 +25,8 @@ function NewExpenseForm(props) {
     date: "",
   });
 
+  const [error, setError] = useState(false);
+
   const submitHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -37,11 +40,18 @@ function NewExpenseForm(props) {
       },
     };
 
-    console.log(data);
+    // check
+
+    // if (!form.title || !form.amount || !form.date) {
+    //   setError(true);
+    //   return;
+    // }
+
     props.onAddDataToMainDataHandler(data);
   };
 
   const getValuesFromInputs = (e) => {
+    setError(false);
     setForm((prevValue) => {
       return {
         ...prevValue,
@@ -50,14 +60,34 @@ function NewExpenseForm(props) {
     });
   };
 
+  const focusHandler = () => {
+    console.log("Focus");
+  };
+
+  const blurHandler = (e) => {
+    console.log("Blur");
+
+    if (!e.target.value.trim()) {
+      setError(true);
+    }
+  };
+
   return (
     <div className="expense-form-container">
       <div className="expense-form">
+        {/* {error && <p>You should enter the data</p>} */}
         <form onSubmit={submitHandler}>
           <div className="expense-form">
             <div className="expense-input">
               <label>Title</label>
-              <input type="text" onChange={getValuesFromInputs} name="title" />
+              <input
+                type="text"
+                onChange={getValuesFromInputs}
+                name="title"
+                className={error ? classes["error-input"] : ""}
+                onFocus={focusHandler}
+                onBlur={blurHandler}
+              />
             </div>
             <div className="expense-input">
               <label>Amount</label>
@@ -65,11 +95,17 @@ function NewExpenseForm(props) {
                 type="number"
                 name="amount"
                 onChange={getValuesFromInputs}
+                className=""
               />
             </div>
             <div className="expense-input">
               <label>Date</label>
-              <input type="date" name="date" onChange={getValuesFromInputs} />
+              <input
+                type="date"
+                name="date"
+                onChange={getValuesFromInputs}
+                className=""
+              />
             </div>
           </div>
 
