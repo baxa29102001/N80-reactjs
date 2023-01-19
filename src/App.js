@@ -1,63 +1,24 @@
 import { useState } from "react";
-
-import Expenses from "./components/expense/Expenses";
 import "./App.css";
-const fakeData = [
-  {
-    id: "a1",
-    title: "Toilet paper",
-    price: "99.9",
-    date: {
-      year: "2019",
-      month: "August",
-      day: "29",
-    },
-  },
-  {
-    id: "a2",
-    title: "New Tv",
-    price: "89.9",
-    date: {
-      year: "2019",
-      month: "August",
-      day: "29",
-    },
-  },
-  {
-    id: "a3",
-    title: "New Iphone",
-    price: "99.999",
-    date: {
-      year: "2019",
-      month: "August",
-      day: "29",
-    },
-  },
-  // {
-  //   id: "a1",
-  //   title: "Toilet paper",
-  //   price: "99.9",
-  //   date: {
-  //     year: "2019",
-  //     month: "August",
-  //     day: "29",
-  //   },
-  // },
-];
+import Cards from "./components/Cards";
+import NewPizzaOrder from "./components/NewPizzaOrder";
+
 function App() {
-  const [fake_data, setFake_data] = useState(fakeData);
+  const [data, setData] = useState([]);
 
-  const sliceArrayHandler = () => {
-    let arr2 = fake_data.slice(0, 1);
-
-    setFake_data(arr2);
+  const pushNewOrder = (data) => {
+    setData((prev) => [data, ...prev]);
   };
 
   return (
     <>
-      <div className="expenses">
-        <Expenses expenses={fake_data} />
-        <button onClick={sliceArrayHandler}>Change array</button>
+      <div className="">
+        <NewPizzaOrder onAddData={pushNewOrder} />
+        <div className="orders_card">
+          {data.map((item) => {
+            return <Cards item={item} />;
+          })}
+        </div>
       </div>
     </>
   );
