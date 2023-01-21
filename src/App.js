@@ -1,24 +1,53 @@
 import { useState } from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Link,
+  Routes,
+  Route,
+} from "react-router-dom";
 import "./App.css";
-import Cards from "./components/Cards";
-import NewPizzaOrder from "./components/NewPizzaOrder";
+import Example from "./components/Example";
+import SingleProduct from "./components/SingleProduct";
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+
+//     element: (
+//       <>
+//         <h1>Main page</h1>
+//         <Link to={"/helloWorld"}>Hello Page</Link>
+//       </>
+//     ),
+//   },
+//   {
+//     path: "/helloWorld",
+
+//     element: <h2>Hello page</h2>,
+//   },
+// ]);
 
 function App() {
-  const [data, setData] = useState([]);
-
-  const pushNewOrder = (data) => {
-    setData((prev) => [data, ...prev]);
-  };
-
   return (
     <>
       <div className="">
-        <NewPizzaOrder onAddData={pushNewOrder} />
-        <div className="orders_card">
-          {data.map((item) => {
-            return <Cards item={item} />;
-          })}
-        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <h1>Main page</h1>
+                <Link to={"/products"}>Products Page</Link>
+              </>
+            }
+          />
+
+          <Route path="/products" element={<Example />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+        </Routes>
+
+        {/* <RouterProvider router={router} /> */}
       </div>
     </>
   );
