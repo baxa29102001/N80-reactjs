@@ -19,6 +19,7 @@ function NewPizzaOrder(props) {
     sausages: [],
     vehicle1: [],
   });
+  console.log("Hello");
 
   const submitHandler = (e) => {
     e.preventDefault();
