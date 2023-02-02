@@ -1,55 +1,31 @@
-import { useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Link,
-  Routes,
-  Route,
-} from "react-router-dom";
-import "./App.css";
-import Example from "./components/Example";
-import SingleProduct from "./components/SingleProduct";
+import React, { Component } from "react";
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-
-//     element: (
-//       <>
-//         <h1>Main page</h1>
-//         <Link to={"/helloWorld"}>Hello Page</Link>
-//       </>
-//     ),
-//   },
-//   {
-//     path: "/helloWorld",
-
-//     element: <h2>Hello page</h2>,
-//   },
-// ]);
+import { useSelector, useDispatch } from "react-redux";
+import { counterActions } from "./store/index";
 
 function App() {
+  const { counterObject, loginObject } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  const incrementHandler = () => {
+    dispatch(counterActions.increment());
+  };
+  const decrementHandler = () => {
+    dispatch(counterActions.decrement());
+  };
+  const increseByFive = () => {
+    dispatch(counterActions.increase(5));
+  };
   return (
-    <>
-      <div className="">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <h1>Main page</h1>
-                <Link to={"/products"}>Products Page</Link>
-              </>
-            }
-          />
+    <div>
+      <h2>Counter</h2>
+      <h3>{counterObject.counter}</h3>
 
-          <Route path="/products" element={<Example />} />
-          <Route path="/products/:id" element={<SingleProduct />} />
-        </Routes>
-
-        {/* <RouterProvider router={router} /> */}
-      </div>
-    </>
+      <button onClick={incrementHandler}>Increment</button>
+      <button onClick={decrementHandler}>Decrement</button>
+      <button onClick={increseByFive}>Incrment 5</button>
+    </div>
   );
 }
 
